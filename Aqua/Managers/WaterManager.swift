@@ -50,11 +50,15 @@ class WaterManager : ObservableObject {
     }
     
     func updateGoalAmount(to newValue: Double) {
-        self.registerOfTheDay?.goalAmount = newValue
+        guard let registerOfTheDay = self.registerOfTheDay else { return }
+        registerOfTheDay.goalAmount = newValue
+        dataController.update(element: registerOfTheDay)
     }
     
     func updateTotalAmount() {
-        self.registerOfTheDay?.totalAmount += valueToAlwaysAdd
+        guard let registerOfTheDay = self.registerOfTheDay else { return }
+        registerOfTheDay.totalAmount += valueToAlwaysAdd
+        dataController.update(element: registerOfTheDay)
     }
     
     func updateValueToAlwaysAdd(_ newValue: Double) {
@@ -67,33 +71,26 @@ class WaterManager : ObservableObject {
     }
     
     func resetProgress() {
-        self.registerOfTheDay?.totalAmount = 0
+        guard let registerOfTheDay = self.registerOfTheDay else { return }
+        registerOfTheDay.totalAmount = 0
     }
     
     func getProgress() -> Double {
-        if let registerOfTheDay = self.registerOfTheDay {
-            return registerOfTheDay.totalAmount / registerOfTheDay.goalAmount
-        } else {
+        guard let registerOfTheDay = self.registerOfTheDay else {
             print("Não existe um registro para calcular o percentual")
             return 0
         }
+        return registerOfTheDay.totalAmount / registerOfTheDay.goalAmount
     }
     
     func getTotalAmount() -> Double {
-        if let registerOfTheDay = self.registerOfTheDay {
-            return registerOfTheDay.totalAmount
-        } else {
-            print("Não existe um registro")
-            return 0
-        }
+        guard let registerOfTheDay = self.registerOfTheDay else { return 0}
+        return registerOfTheDay.totalAmount
     }
     
     func getGoalAmount() -> Double {
-        if let registerOfTheDay = self.registerOfTheDay {
-            return registerOfTheDay.goalAmount
-        } else {
-            print("Não existe um registro")
-            return 0
-        }
+        guard let registerOfTheDay = self.registerOfTheDay else { return 0}
+        return registerOfTheDay.goalAmount
     }
+    
 }

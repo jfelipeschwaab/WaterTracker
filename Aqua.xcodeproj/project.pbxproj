@@ -6,14 +6,66 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8EF571342E96E4AF00625264 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EF571172E96E00100625264 /* WidgetKit.framework */; };
+		8EF571352E96E4AF00625264 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EF571192E96E00100625264 /* SwiftUI.framework */; };
+		8EF571422E96E4B000625264 /* WaterReminderWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 8EF571332E96E4AF00625264 /* WaterReminderWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		8EF571402E96E4B000625264 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8EF56F702E95AE0800625264 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8EF571322E96E4AF00625264;
+			remoteInfo = WaterReminderWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		8EF5712E2E96E00300625264 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				8EF571422E96E4B000625264 /* WaterReminderWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		8EF56F782E95AE0800625264 /* Aqua.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aqua.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EF571172E96E00100625264 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		8EF571192E96E00100625264 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		8EF571332E96E4AF00625264 /* WaterReminderWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WaterReminderWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		8EF571482E9702FF00625264 /* WaterReminderWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WaterReminderWidgetExtension.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		8EF571432E96E4B000625264 /* Exceptions for "WaterReminderWidget" folder in "WaterReminderWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 8EF571322E96E4AF00625264 /* WaterReminderWidgetExtension */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		8EF56F7A2E95AE0800625264 /* Aqua */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Aqua;
+			sourceTree = "<group>";
+		};
+		8EF571362E96E4AF00625264 /* WaterReminderWidget */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				8EF571432E96E4B000625264 /* Exceptions for "WaterReminderWidget" folder in "WaterReminderWidgetExtension" target */,
+			);
+			path = WaterReminderWidget;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -26,13 +78,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8EF571302E96E4AF00625264 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EF571352E96E4AF00625264 /* SwiftUI.framework in Frameworks */,
+				8EF571342E96E4AF00625264 /* WidgetKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
 		8EF56F6F2E95AE0800625264 = {
 			isa = PBXGroup;
 			children = (
+				8EF571482E9702FF00625264 /* WaterReminderWidgetExtension.entitlements */,
 				8EF56F7A2E95AE0800625264 /* Aqua */,
+				8EF571362E96E4AF00625264 /* WaterReminderWidget */,
+				8EF571162E96E00100625264 /* Frameworks */,
 				8EF56F792E95AE0800625264 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -41,8 +105,18 @@
 			isa = PBXGroup;
 			children = (
 				8EF56F782E95AE0800625264 /* Aqua.app */,
+				8EF571332E96E4AF00625264 /* WaterReminderWidgetExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		8EF571162E96E00100625264 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8EF571172E96E00100625264 /* WidgetKit.framework */,
+				8EF571192E96E00100625264 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -55,10 +129,12 @@
 				8EF56F742E95AE0800625264 /* Sources */,
 				8EF56F752E95AE0800625264 /* Frameworks */,
 				8EF56F762E95AE0800625264 /* Resources */,
+				8EF5712E2E96E00300625264 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				8EF571412E96E4B000625264 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				8EF56F7A2E95AE0800625264 /* Aqua */,
@@ -69,6 +145,28 @@
 			productName = Aqua;
 			productReference = 8EF56F782E95AE0800625264 /* Aqua.app */;
 			productType = "com.apple.product-type.application";
+		};
+		8EF571322E96E4AF00625264 /* WaterReminderWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8EF571442E96E4B000625264 /* Build configuration list for PBXNativeTarget "WaterReminderWidgetExtension" */;
+			buildPhases = (
+				8EF5712F2E96E4AF00625264 /* Sources */,
+				8EF571302E96E4AF00625264 /* Frameworks */,
+				8EF571312E96E4AF00625264 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				8EF571362E96E4AF00625264 /* WaterReminderWidget */,
+			);
+			name = WaterReminderWidgetExtension;
+			packageProductDependencies = (
+			);
+			productName = WaterReminderWidgetExtension;
+			productReference = 8EF571332E96E4AF00625264 /* WaterReminderWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -81,6 +179,9 @@
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
 					8EF56F772E95AE0800625264 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					8EF571322E96E4AF00625264 = {
 						CreatedOnToolsVersion = 16.4;
 					};
 				};
@@ -100,12 +201,20 @@
 			projectRoot = "";
 			targets = (
 				8EF56F772E95AE0800625264 /* Aqua */,
+				8EF571322E96E4AF00625264 /* WaterReminderWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8EF56F762E95AE0800625264 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8EF571312E96E4AF00625264 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -122,7 +231,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		8EF5712F2E96E4AF00625264 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8EF571412E96E4B000625264 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8EF571322E96E4AF00625264 /* WaterReminderWidgetExtension */;
+			targetProxy = 8EF571402E96E4B000625264 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		8EF56F812E95AE0A00625264 /* Debug */ = {
@@ -251,6 +375,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Aqua/Aqua.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q7JQ2Q58W8;
@@ -279,6 +404,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Aqua/Aqua.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = Q7JQ2Q58W8;
@@ -302,6 +428,62 @@
 			};
 			name = Release;
 		};
+		8EF571452E96E4B000625264 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = WaterReminderWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q7JQ2Q58W8;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WaterReminderWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WaterReminderWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jfelipeschwaab.com.Aqua.WaterReminderWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8EF571462E96E4B000625264 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CODE_SIGN_ENTITLEMENTS = WaterReminderWidgetExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q7JQ2Q58W8;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WaterReminderWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WaterReminderWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jfelipeschwaab.com.Aqua.WaterReminderWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -319,6 +501,15 @@
 			buildConfigurations = (
 				8EF56F842E95AE0A00625264 /* Debug */,
 				8EF56F852E95AE0A00625264 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8EF571442E96E4B000625264 /* Build configuration list for PBXNativeTarget "WaterReminderWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8EF571452E96E4B000625264 /* Debug */,
+				8EF571462E96E4B000625264 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

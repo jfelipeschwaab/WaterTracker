@@ -4,6 +4,7 @@ struct Home: View {
     @State private var progress: Double = 0.45
     @State private var total: Double = 900
     @State private var goal: Double = 2000
+    @State private var showNotificationSetupView: Bool = false
     @ObservedObject var waterManager: WaterManager
 
     var body: some View {
@@ -64,7 +65,12 @@ struct Home: View {
 
                 Button {
                     withAnimation(.easeInOut) {
-                        waterManager.updateTotalAmount()
+                        if !NotificationManager.shared.hasSeenNotificationPrompt {
+                            NotificationManager.shared.setHasSeenNotificationPrompt()
+                            showNotificationSetupView = true
+                        } else {
+                            waterManager.updateTotalAmount()
+                        }
                     }
                 } label: {
                     HStack {
@@ -86,6 +92,10 @@ struct Home: View {
                 Spacer()
             }
             .padding(.top, 80)
+            .sheet(isPresented: $showNotificationSetupView) {
+                NotificationSetupView()
+            }
+
         }
     }
 }

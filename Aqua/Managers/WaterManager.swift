@@ -66,6 +66,10 @@ class WaterManager : ObservableObject {
         createRegister()
     }
     
+    func resetProgress() {
+        self.registerOfTheDay?.totalAmount = 0
+    }
+    
     func getProgress() -> Double {
         if let registerOfTheDay = self.registerOfTheDay {
             return registerOfTheDay.totalAmount / registerOfTheDay.goalAmount

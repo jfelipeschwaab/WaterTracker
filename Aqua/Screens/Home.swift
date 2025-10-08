@@ -1,11 +1,9 @@
 import SwiftUI
 
 struct Home: View {
-    @State private var progress: Double = 0.45
-    @State private var total: Double = 900
-    @State private var goal: Double = 2000
-    @State private var showNotificationSetupView: Bool = false
     @ObservedObject var waterManager: WaterManager
+    @State private var showNotificationSetupView = false
+    @State private var showGoalEditSheet = false
 
     var body: some View {
         ZStack {
@@ -15,11 +13,13 @@ struct Home: View {
                 endPoint: .bottomTrailing
             )
             .ignoresSafeArea()
+
             VStack(spacing: 40) {
                 Text("💧 Aqua")
                     .font(.largeTitle.bold())
                     .foregroundColor(.blue.opacity(0.8))
 
+                // Círculo de progresso
                 ZStack {
                     Circle()
                         .stroke(lineWidth: 25)
@@ -28,11 +28,9 @@ struct Home: View {
                     Circle()
                         .trim(from: 0, to: CGFloat(waterManager.getProgress()))
                         .stroke(
-                            LinearGradient(
-                                colors: [.blue, .cyan],
-                                startPoint: .topLeading,
-                                endPoint: .bottomTrailing
-                            ),
+                            LinearGradient(colors: [.blue, .cyan],
+                                           startPoint: .topLeading,
+                                           endPoint: .bottomTrailing),
                             style: StrokeStyle(lineWidth: 25, lineCap: .round)
                         )
                         .rotationEffect(.degrees(-90))
@@ -42,27 +40,44 @@ struct Home: View {
                         Text("\(Int(waterManager.getProgress() * 100))%")
                             .font(.system(size: 40, weight: .bold))
                             .foregroundColor(.blue)
-                        Text("\(Int(waterManager.registerOfTheDay?.totalAmount ?? 0)) / \(Int(waterManager.registerOfTheDay?.goalAmount ?? 0)) ml")
-                            .font(.subheadline)
-                            .foregroundColor(.gray)
+
+                        HStack(spacing: 5) {
+                            Text("\(Int(waterManager.registerOfTheDay?.totalAmount ?? 0)) / \(Int(waterManager.registerOfTheDay?.goalAmount ?? 0)) ml")
+                                .font(.subheadline)
+                                .foregroundColor(.gray)
+
+                            Button {
+                                showGoalEditSheet = true
+                            } label: {
+                                Image(systemName: "pencil.circle.fill")
+                                    .foregroundColor(.blue)
+                                    .font(.system(size: 22))
+                            }
+                            .buttonStyle(.plain)
+                            .accessibilityLabel("Editar meta diária")
+                        }
                     }
                 }
                 .frame(width: 220, height: 220)
                 .padding(.top, 20)
-                
+
+                // Controle de quantidade a adicionar
                 VStack(spacing: 10) {
                     Text("Quantidade a adicionar")
                         .font(.headline)
+
                     HStack {
                         Text("\(Int(waterManager.valueToAlwaysAdd)) ml")
                             .font(.title2.bold())
                             .foregroundColor(.blue)
+
                         Slider(value: $waterManager.valueToAlwaysAdd, in: 50...1000, step: 50)
                             .tint(.blue)
                             .frame(width: 200)
                     }
                 }
 
+                // Botão de adicionar água
                 Button {
                     withAnimation(.easeInOut) {
                         if !NotificationManager.shared.hasSeenNotificationPrompt {
@@ -89,13 +104,61 @@ struct Home: View {
                     .shadow(radius: 5)
                 }
 
+                // Botão de reset
+                Button {
+                    waterManager.resetProgress()
+                } label: {
+                    Text("Resetar progresso diário")
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .padding()
+                        .frame(width: 250)
+                        .background(Color.red)
+                        .cornerRadius(15)
+                        .shadow(radius: 5)
+                }
+
                 Spacer()
             }
             .padding(.top, 80)
             .sheet(isPresented: $showNotificationSetupView) {
                 NotificationSetupView()
             }
+            .sheet(isPresented: $showGoalEditSheet) {
+                GoalEditView(waterManager: waterManager)
+            }
+        }
+    }
+}
 
+struct GoalEditView: View {
+    @ObservedObject var waterManager: WaterManager
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        NavigationView {
+            VStack(alignment: .leading, spacing: 30) {
+                Text("Defina sua meta diária")
+                    .font(.title2.bold())
+
+                Stepper(value: Binding(
+                    get: { waterManager.registerOfTheDay?.goalAmount ?? 2000 },
+                    set: { newValue in waterManager.updateGoalAmount(to: newValue) }
+                ), in: 500...5000, step: 100) {
+                    Text("\(Int(waterManager.registerOfTheDay?.goalAmount ?? 2000)) ml")
+                        .font(.title3)
+                        .foregroundColor(.blue)
+                }
+
+                Spacer()
+            }
+            .padding()
+            .navigationTitle("Editar meta")
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Fechar") { dismiss() }
+                }
+            }
         }
     }
 }

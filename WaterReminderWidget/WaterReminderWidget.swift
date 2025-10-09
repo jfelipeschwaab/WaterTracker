@@ -7,28 +7,49 @@
 
 import WidgetKit
 import SwiftUI
+import SwiftData
 
 struct Provider: AppIntentTimelineProvider {
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationAppIntent())
+        SimpleEntry(date: Date(), configuration: ConfigurationAppIntent(), waterCount: 0)
     }
 
     func snapshot(for configuration: ConfigurationAppIntent, in context: Context) async -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: configuration)
+        SimpleEntry(date: Date(), configuration: configuration, waterCount: 0)
     }
     
     func timeline(for configuration: ConfigurationAppIntent, in context: Context) async -> Timeline<SimpleEntry> {
-        var entries: [SimpleEntry] = []
-
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, configuration: configuration)
+        let container = SharedPersistenceController.widgetContainer
+        
+        let modelContext = ModelContext(container)
+        
+        let fetchDescriptor = FetchDescriptor<Water>()
+        
+        do {
+            let waterIntakes = try modelContext.fetch(fetchDescriptor)
+            
+            guard let registerOfTheday = waterIntakes.last else {
+                print("INFO: Nenhum registro encontrado, exibindo o estado padrão do widget.")
+                let defaultEntry = SimpleEntry(date: Date(), configuration: configuration, waterCount: 0)
+                let timeline = Timeline(entries: [defaultEntry], policy: .never)
+                
+                return timeline
+            }
+            
+            var entries : [SimpleEntry] = []
+            
+            let progressPercentage = (registerOfTheday.totalAmount / registerOfTheday.goalAmount) * 100
+            let entry = SimpleEntry(date: Date(), configuration: configuration, waterCount: progressPercentage)
             entries.append(entry)
+            
+            let timeline = Timeline(entries: entries, policy: .atEnd)
+            
+            return timeline
+        } catch {
+            print("Falha ao buscar dados para o widget: \(error)")
+            let entry = SimpleEntry(date: Date(), configuration: configuration, waterCount: 0)
+            return Timeline(entries: [entry], policy: .atEnd)
         }
-
-        return Timeline(entries: entries, policy: .atEnd)
     }
 
 //    func relevances() async -> WidgetRelevances<ConfigurationAppIntent> {
@@ -39,30 +60,21 @@ struct Provider: AppIntentTimelineProvider {
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let configuration: ConfigurationAppIntent
+    let waterCount: Double
 }
-
-import SwiftUI
-import WidgetKit
-
-import SwiftUI
-import WidgetKit
 
 struct WaterReminderWidgetEntryView: View {
     var entry: Provider.Entry
-    
-    // Dados mockados
-    let currentAmount: Int = 1200
-    let totalGoal: Int = 2000
-    
+
+    // Progresso com base nos dados reais da Entry
     var progress: Double {
-        return min(Double(currentAmount) / Double(totalGoal), 1.0)
+        min(entry.waterCount / 100.0, 1.0) // porque waterCount já é porcentagem
     }
-    
-    // Calcula porcentagem
+
     var percentageText: String {
-        return "\(Int(progress * 100))%"
+        "\(Int(entry.waterCount))%"
     }
-    
+
     var body: some View {
         ZStack {
             VStack(spacing: 16) {
@@ -72,7 +84,7 @@ struct WaterReminderWidgetEntryView: View {
                         .stroke(lineWidth: 12)
                         .opacity(0.2)
                         .foregroundColor(.white)
-                    
+
                     Circle()
                         .trim(from: 0, to: CGFloat(progress))
                         .stroke(
@@ -84,7 +96,7 @@ struct WaterReminderWidgetEntryView: View {
                         )
                         .rotationEffect(.degrees(-90))
                         .animation(.easeInOut, value: progress)
-                    
+
                     // Porcentagem no centro
                     Text(percentageText)
                         .font(.headline)
@@ -92,7 +104,7 @@ struct WaterReminderWidgetEntryView: View {
                         .foregroundColor(.white)
                 }
                 .frame(width: 60, height: 60)
-                
+
                 Button(action: {
                     print("Adicionar água pressionado")
                 }) {
@@ -138,11 +150,4 @@ extension ConfigurationAppIntent {
         intent.favoriteEmoji = "🤩"
         return intent
     }
-}
-
-#Preview(as: .systemSmall) {
-    WaterReminderWidget()
-} timeline: {
-    SimpleEntry(date: .now, configuration: .smiley)
-    SimpleEntry(date: .now, configuration: .starEyes)
 }

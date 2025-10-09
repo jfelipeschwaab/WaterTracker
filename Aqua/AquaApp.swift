@@ -14,15 +14,11 @@ struct AquaApp: App {
     @StateObject var waterManager: WaterManager
     
     init() {
-        do {
-            container = try ModelContainer(for: Water.self)
-            let context = ModelContext(container)
-            let databaseController = DatabaseManager(context: context)
-            
-            _waterManager = StateObject(wrappedValue: WaterManager(dataController: databaseController))
-        } catch {
-            fatalError("Erro ao inicializar SwiftData: \(error.localizedDescription)")
-        }
+        let sharedContainer = SharedPersistenceController.mainAppContainer
+        self.container = sharedContainer
+        let context = ModelContext(self.container)
+        let databaseController = DatabaseManager(context: context)
+        _waterManager = StateObject(wrappedValue: WaterManager(dataController: databaseController))
     }
     
     var body: some Scene {

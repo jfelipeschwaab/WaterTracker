@@ -52,11 +52,22 @@
 			);
 			target = 8EF571322E96E4AF00625264 /* WaterReminderWidgetExtension */;
 		};
+		8EF5714A2E97053900625264 /* Exceptions for "Aqua" folder in "WaterReminderWidgetExtension" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Managers/SharedPersistenceController.swift,
+				Models/Water.swift,
+			);
+			target = 8EF571322E96E4AF00625264 /* WaterReminderWidgetExtension */;
+		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		8EF56F7A2E95AE0800625264 /* Aqua */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				8EF5714A2E97053900625264 /* Exceptions for "Aqua" folder in "WaterReminderWidgetExtension" target */,
+			);
 			path = Aqua;
 			sourceTree = "<group>";
 		};

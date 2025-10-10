@@ -9,10 +9,13 @@ import WidgetKit
 import AppIntents
 
 struct ConfigurationAppIntent: WidgetConfigurationIntent {
-    static var title: LocalizedStringResource { "Configuration" }
-    static var description: IntentDescription { "This is an example widget." }
+    static var title: LocalizedStringResource { "Configurar Widget" }
+    static var description: IntentDescription { "Escolha quanto de água adicionar por toque" }
 
     // An example configurable parameter.
-    @Parameter(title: "Favorite Emoji", default: "😃")
-    var favoriteEmoji: String
+    @Parameter(
+        title: "Quantidade de Água (mL)",
+        default: 200
+    )
+    var waterAmount: Int
 }

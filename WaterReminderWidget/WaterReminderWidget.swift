@@ -23,32 +23,30 @@ struct Provider: AppIntentTimelineProvider {
         
         let modelContext = ModelContext(container)
         
-        let fetchDescriptor = FetchDescriptor<Water>()
+        let startOfDay = Calendar.current.startOfDay(for: Date())
+        let endOfDay = Calendar.current.date(byAdding: .day, value: 1, to: startOfDay)!
+
+        let predicate = #Predicate<Water> { water in
+            water.date >= startOfDay && water.date < endOfDay
+        }
         
+        let fetchDescriptor = FetchDescriptor<Water>(predicate: predicate)
+
         do {
-            let waterIntakes = try modelContext.fetch(fetchDescriptor)
-            
-            guard let registerOfTheday = waterIntakes.last else {
-                print("INFO: Nenhum registro encontrado, exibindo o estado padrão do widget.")
-                let defaultEntry = SimpleEntry(date: Date(), configuration: configuration, waterCount: 0)
-                let timeline = Timeline(entries: [defaultEntry], policy: .never)
-                
-                return timeline
+            let results = try modelContext.fetch(fetchDescriptor)
+            guard let register = results.first else {
+                let entry = SimpleEntry(date: Date(), configuration: configuration, waterCount: 0)
+                return Timeline(entries: [entry], policy: .never)
             }
-            
-            var entries : [SimpleEntry] = []
-            
-            let progressPercentage = (registerOfTheday.totalAmount / registerOfTheday.goalAmount) * 100
-            let entry = SimpleEntry(date: Date(), configuration: configuration, waterCount: progressPercentage)
-            entries.append(entry)
-            
-            let timeline = Timeline(entries: entries, policy: .atEnd)
-            
-            return timeline
+
+            let progress = (register.totalAmount / register.goalAmount) * 100
+            let entry = SimpleEntry(date: Date(), configuration: configuration, waterCount: progress)
+            return Timeline(entries: [entry], policy: .never)
+
         } catch {
-            print("Falha ao buscar dados para o widget: \(error)")
+            print("❌ Erro ao buscar dados: \(error)")
             let entry = SimpleEntry(date: Date(), configuration: configuration, waterCount: 0)
-            return Timeline(entries: [entry], policy: .atEnd)
+            return Timeline(entries: [entry], policy: .never)
         }
     }
 
@@ -105,9 +103,7 @@ struct WaterReminderWidgetEntryView: View {
                 }
                 .frame(width: 60, height: 60)
 
-                Button(action: {
-                    print("Adicionar água pressionado")
-                }) {
+                Button(intent: AddWaterIntent(amount: entry.configuration.$waterAmount)) {
                     HStack(spacing: 6) {
                         Image(systemName: "plus")
                         Image(systemName: "drop.fill")
@@ -138,16 +134,16 @@ struct WaterReminderWidget: Widget {
     }
 }
 
-extension ConfigurationAppIntent {
-    fileprivate static var smiley: ConfigurationAppIntent {
-        let intent = ConfigurationAppIntent()
-        intent.favoriteEmoji = "😀"
-        return intent
-    }
-    
-    fileprivate static var starEyes: ConfigurationAppIntent {
-        let intent = ConfigurationAppIntent()
-        intent.favoriteEmoji = "🤩"
-        return intent
-    }
-}
+//extension ConfigurationAppIntent {
+//    fileprivate static var smiley: ConfigurationAppIntent {
+//        let intent = ConfigurationAppIntent()
+//        intent.favoriteEmoji = "😀"
+//        return intent
+//    }
+//    
+//    fileprivate static var starEyes: ConfigurationAppIntent {
+//        let intent = ConfigurationAppIntent()
+//        intent.favoriteEmoji = "🤩"
+//        return intent
+//    }
+//}

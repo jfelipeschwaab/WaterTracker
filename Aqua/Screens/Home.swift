@@ -122,7 +122,7 @@ struct Home: View {
             }
             .padding(.top, 80)
             .sheet(isPresented: $showNotificationSetupView) {
-                NotificationSetupView()
+                NotificationSetupView(waterManager: waterManager)
             }
             .sheet(isPresented: $showGoalEditSheet) {
                 GoalEditView(waterManager: waterManager)

@@ -16,7 +16,7 @@ class SharedPersistenceController {
     static var mainAppContainer : ModelContainer = {
         let schema = Schema([Water.self])
         
-        let configuration = ModelConfiguration(schema: schema, groupContainer: .identifier(groupID))
+        let configuration = ModelConfiguration(schema: schema, groupContainer: .identifier(groupID), cloudKitDatabase: .automatic)
         
         do {
             return try ModelContainer(for: schema, configurations: [configuration])

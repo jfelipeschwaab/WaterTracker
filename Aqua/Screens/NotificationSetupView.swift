@@ -4,6 +4,8 @@ struct NotificationSetupView: View {
     @Environment(\.dismiss) var dismiss
     @State private var interval: Double = 2 // intervalo em horas
     @State private var animateDrop = false
+    @ObservedObject var waterManager: WaterManager
+
     
     var body: some View {
         ZStack {
@@ -59,7 +61,13 @@ struct NotificationSetupView: View {
                     
                     NotificationManager.shared.requestAuthorization { granted in
                         if granted {
+                            DispatchQueue.main.async {
+                                UIApplication.shared.registerForRemoteNotifications()
+                            }
+                            
+                            waterManager.cloudKitController.createCloudKitSubscription()
                             NotificationManager.shared.scheduleWaterNotification()
+
                         }
                         DispatchQueue.main.async {
                             dismiss()
@@ -99,8 +107,4 @@ struct NotificationSetupView: View {
             .padding(.vertical, 50)
         }
     }
-}
-
-#Preview {
-    NotificationSetupView()
 }

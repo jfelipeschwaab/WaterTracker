@@ -55,10 +55,18 @@
 		8EF5714A2E97053900625264 /* Exceptions for "Aqua" folder in "WaterReminderWidgetExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
+				Intents/AddWaterIntent.swift,
 				Managers/SharedPersistenceController.swift,
 				Models/Water.swift,
 			);
 			target = 8EF571322E96E4AF00625264 /* WaterReminderWidgetExtension */;
+		};
+		8EF5715F2E983B0E00625264 /* Exceptions for "Aqua" folder in "Aqua" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 8EF56F772E95AE0800625264 /* Aqua */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -66,6 +74,7 @@
 		8EF56F7A2E95AE0800625264 /* Aqua */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
+				8EF5715F2E983B0E00625264 /* Exceptions for "Aqua" folder in "Aqua" target */,
 				8EF5714A2E97053900625264 /* Exceptions for "Aqua" folder in "WaterReminderWidgetExtension" target */,
 			);
 			path = Aqua;
@@ -392,6 +401,7 @@
 				DEVELOPMENT_TEAM = Q7JQ2Q58W8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Aqua/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -421,6 +431,7 @@
 				DEVELOPMENT_TEAM = Q7JQ2Q58W8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Aqua/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

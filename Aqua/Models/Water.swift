@@ -11,9 +11,9 @@ import SwiftData
 
 @Model
 class Water {
-    var date: Date
-    var totalAmount: Double
-    var goalAmount: Double
+    var date: Date = Date.now
+    var totalAmount: Double = 0
+    var goalAmount: Double = 0
     
     init(date: Date, totalAmount: Double, goalAmount: Double) {
         self.date = date

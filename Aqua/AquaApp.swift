@@ -18,7 +18,7 @@ struct AquaApp: App {
         self.container = sharedContainer
         let context = ModelContext(self.container)
         let databaseController = DatabaseManager(context: context)
-        _waterManager = StateObject(wrappedValue: WaterManager(dataController: databaseController))
+        _waterManager = StateObject(wrappedValue: WaterManager(dataController: databaseController, cloudKitController: .init()))
     }
     
     var body: some Scene {

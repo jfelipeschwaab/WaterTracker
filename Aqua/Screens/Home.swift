@@ -4,6 +4,9 @@ struct Home: View {
     @ObservedObject var waterManager: WaterManager
     @State private var showNotificationSetupView = false
     @State private var showGoalEditSheet = false
+    
+    @Environment(\.scenePhase) private var scenePhase
+
 
     var body: some View {
         ZStack {
@@ -126,6 +129,12 @@ struct Home: View {
             }
             .sheet(isPresented: $showGoalEditSheet) {
                 GoalEditView(waterManager: waterManager)
+            }
+        }
+        .onChange(of: scenePhase) { _, newPhase in
+            if newPhase == .active {
+                // O app voltou para o foreground
+                waterManager.refreshUI()
             }
         }
     }

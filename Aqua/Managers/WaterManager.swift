@@ -111,3 +111,11 @@ class WaterManager : ObservableObject {
         return registerOfTheDay.goalAmount
     }
 }
+
+extension WaterManager {
+    func refreshUI() {
+        if let latestRegister = fetchTodayRegister() {
+            registerOfTheDay = latestRegister
+        }
+    }
+}

@@ -82,7 +82,7 @@ struct WaterReminderWidgetEntryView: View {
                         .stroke(lineWidth: 12)
                         .opacity(0.2)
                         .foregroundColor(.white)
-
+                    
                     Circle()
                         .trim(from: 0, to: CGFloat(progress))
                         .stroke(
@@ -94,7 +94,7 @@ struct WaterReminderWidgetEntryView: View {
                         )
                         .rotationEffect(.degrees(-90))
                         .animation(.easeInOut, value: progress)
-
+                    
                     // Porcentagem no centro
                     Text(percentageText)
                         .font(.headline)
@@ -102,8 +102,11 @@ struct WaterReminderWidgetEntryView: View {
                         .foregroundColor(.white)
                 }
                 .frame(width: 60, height: 60)
-
-                Button(intent: AddWaterIntent(amount: entry.configuration.$waterAmount)) {
+                
+                Button(
+                    intent: AddWaterIntent(amount: entry.configuration.$waterAmount)
+                )
+                {
                     HStack(spacing: 6) {
                         Image(systemName: "plus")
                         Image(systemName: "drop.fill")

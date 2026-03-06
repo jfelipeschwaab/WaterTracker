@@ -11,15 +11,12 @@ class WaterManager : ObservableObject {
     
     @Published var registerOfTheDay: Water?
     
-    let dataController: DatabaseManager
-    
-    let cloudKitController: CloudKitController
-    
+    let dataController: DataBaseProtocol
+        
     @Published var valueToAlwaysAdd: Double = 200
     
-    init(dataController: DatabaseManager, cloudKitController: CloudKitController) {
+    init(dataController: DatabaseManager) {
         self.dataController = dataController
-        self.cloudKitController = cloudKitController
         createRegister()
     }
     
@@ -67,7 +64,6 @@ class WaterManager : ObservableObject {
         registerOfTheDay.totalAmount += valueToAlwaysAdd
         dataController.update(element: registerOfTheDay)
         WidgetCenter.shared.reloadAllTimelines()
-        cloudKitController.createCloudKitSubscription()
     }
     
     func updateValueToAlwaysAdd(_ newValue: Double) {
@@ -78,7 +74,6 @@ class WaterManager : ObservableObject {
         self.registerOfTheDay = nil
         createRegister()
         WidgetCenter.shared.reloadAllTimelines()
-        cloudKitController.resetSubscription()
     }
     
     func resetProgress() {

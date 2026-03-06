@@ -13,6 +13,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8EDBC49D2F5B4FC2001CE06E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8EF56F702E95AE0800625264 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8EF56F772E95AE0800625264;
+			remoteInfo = Aqua;
+		};
 		8EF571402E96E4B000625264 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8EF56F702E95AE0800625264 /* Project object */;
@@ -37,6 +44,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8EDBC4992F5B4FC2001CE06E /* AquaXCTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AquaXCTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EF56F782E95AE0800625264 /* Aqua.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Aqua.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8EF571172E96E00100625264 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		8EF571192E96E00100625264 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -56,6 +64,8 @@
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Intents/AddWaterIntent.swift,
+				Intents/AquaShortcuts.swift,
+				Intents/SetGoalIntent.swift,
 				Managers/SharedPersistenceController.swift,
 				Models/Water.swift,
 			);
@@ -71,6 +81,11 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		8EDBC49A2F5B4FC2001CE06E /* AquaXCTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = AquaXCTests;
+			sourceTree = "<group>";
+		};
 		8EF56F7A2E95AE0800625264 /* Aqua */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -91,6 +106,13 @@
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8EDBC4962F5B4FC2001CE06E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8EF56F752E95AE0800625264 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -116,6 +138,7 @@
 				8EF571482E9702FF00625264 /* WaterReminderWidgetExtension.entitlements */,
 				8EF56F7A2E95AE0800625264 /* Aqua */,
 				8EF571362E96E4AF00625264 /* WaterReminderWidget */,
+				8EDBC49A2F5B4FC2001CE06E /* AquaXCTests */,
 				8EF571162E96E00100625264 /* Frameworks */,
 				8EF56F792E95AE0800625264 /* Products */,
 			);
@@ -126,6 +149,7 @@
 			children = (
 				8EF56F782E95AE0800625264 /* Aqua.app */,
 				8EF571332E96E4AF00625264 /* WaterReminderWidgetExtension.appex */,
+				8EDBC4992F5B4FC2001CE06E /* AquaXCTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -142,6 +166,29 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		8EDBC4982F5B4FC2001CE06E /* AquaXCTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8EDBC49F2F5B4FC2001CE06E /* Build configuration list for PBXNativeTarget "AquaXCTests" */;
+			buildPhases = (
+				8EDBC4952F5B4FC2001CE06E /* Sources */,
+				8EDBC4962F5B4FC2001CE06E /* Frameworks */,
+				8EDBC4972F5B4FC2001CE06E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8EDBC49E2F5B4FC2001CE06E /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				8EDBC49A2F5B4FC2001CE06E /* AquaXCTests */,
+			);
+			name = AquaXCTests;
+			packageProductDependencies = (
+			);
+			productName = AquaXCTests;
+			productReference = 8EDBC4992F5B4FC2001CE06E /* AquaXCTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		8EF56F772E95AE0800625264 /* Aqua */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8EF56F832E95AE0A00625264 /* Build configuration list for PBXNativeTarget "Aqua" */;
@@ -195,9 +242,13 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1640;
+				LastSwiftUpdateCheck = 2600;
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
+					8EDBC4982F5B4FC2001CE06E = {
+						CreatedOnToolsVersion = 26.0.1;
+						TestTargetID = 8EF56F772E95AE0800625264;
+					};
 					8EF56F772E95AE0800625264 = {
 						CreatedOnToolsVersion = 16.4;
 					};
@@ -222,11 +273,19 @@
 			targets = (
 				8EF56F772E95AE0800625264 /* Aqua */,
 				8EF571322E96E4AF00625264 /* WaterReminderWidgetExtension */,
+				8EDBC4982F5B4FC2001CE06E /* AquaXCTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8EDBC4972F5B4FC2001CE06E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8EF56F762E95AE0800625264 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -244,6 +303,13 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8EDBC4952F5B4FC2001CE06E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8EF56F742E95AE0800625264 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -261,6 +327,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8EDBC49E2F5B4FC2001CE06E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8EF56F772E95AE0800625264 /* Aqua */;
+			targetProxy = 8EDBC49D2F5B4FC2001CE06E /* PBXContainerItemProxy */;
+		};
 		8EF571412E96E4B000625264 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8EF571322E96E4AF00625264 /* WaterReminderWidgetExtension */;
@@ -269,6 +340,50 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		8EDBC4A02F5B4FC2001CE06E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q7JQ2Q58W8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jfelipeschwaab.com.AquaXCTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Aqua.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Aqua";
+			};
+			name = Debug;
+		};
+		8EDBC4A12F5B4FC2001CE06E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = Q7JQ2Q58W8;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jfelipeschwaab.com.AquaXCTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Aqua.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Aqua";
+			};
+			name = Release;
+		};
 		8EF56F812E95AE0A00625264 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -405,8 +520,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -414,9 +530,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jfelipeschwaab.com.Aqua;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -435,8 +555,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = "";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -444,9 +565,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jfelipeschwaab.com.Aqua;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -509,6 +634,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8EDBC49F2F5B4FC2001CE06E /* Build configuration list for PBXNativeTarget "AquaXCTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8EDBC4A02F5B4FC2001CE06E /* Debug */,
+				8EDBC4A12F5B4FC2001CE06E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8EF56F732E95AE0800625264 /* Build configuration list for PBXProject "Aqua" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

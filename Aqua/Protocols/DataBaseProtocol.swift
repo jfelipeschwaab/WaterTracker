@@ -8,7 +8,7 @@
 
 import Foundation
 import SwiftData
-
+ 
 protocol DataBaseProtocol {
     func add<T: PersistentModel>(element: T)
     func delete<T: PersistentModel>(element: T)

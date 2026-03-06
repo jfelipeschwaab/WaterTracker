@@ -18,7 +18,7 @@ struct Home: View {
             .ignoresSafeArea()
 
             VStack(spacing: 40) {
-                Text("💧 Aqua")
+                Text("Aqua")
                     .font(.largeTitle.bold())
                     .foregroundColor(.blue.opacity(0.8))
 

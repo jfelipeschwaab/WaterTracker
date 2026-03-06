@@ -119,7 +119,7 @@ final class AquaXCTests: XCTestCase {
         sut.registerOfTheDay?.totalAmount = 500
         
         //Act
-        var progress_in_percentage : Double = sut.getProgress()
+        let progress_in_percentage : Double = sut.getProgress()
         
         //Assert
         XCTAssert(progress_in_percentage == 0.5)

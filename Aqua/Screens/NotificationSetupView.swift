@@ -65,7 +65,6 @@ struct NotificationSetupView: View {
                                 UIApplication.shared.registerForRemoteNotifications()
                             }
                             
-                            waterManager.cloudKitController.createCloudKitSubscription()
                             NotificationManager.shared.scheduleWaterNotification()
 
                         }

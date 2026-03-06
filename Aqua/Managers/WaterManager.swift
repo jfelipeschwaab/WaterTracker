@@ -15,7 +15,7 @@ class WaterManager : ObservableObject {
         
     @Published var valueToAlwaysAdd: Double = 200
     
-    init(dataController: DatabaseManager) {
+    init(dataController: DataBaseProtocol) {
         self.dataController = dataController
         createRegister()
     }
